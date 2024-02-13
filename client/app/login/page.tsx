@@ -15,7 +15,7 @@ export default function Login() {
               htmlFor="username"
               className="block text-md font-medium leading-6 text-gray-900"
             >
-              Username:
+              Username
             </label>
             <div className="mt-2">
               <input
@@ -37,7 +37,7 @@ export default function Login() {
                 htmlFor="password"
                 className="block text-md font-medium leading-6 text-gray-900"
               >
-                Password:
+                Password
               </label>
               <div className="text-sm">
                 <a href="#" className="font-semibold text-kikirik-primary hover:text-slate-800">

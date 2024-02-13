@@ -17,9 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + "min-h-full max-w-screen"}>
+      <body className={inter.className + "min-h-full min-w-full"}>
         <Navbar />
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
       </body>
     </html>
   );

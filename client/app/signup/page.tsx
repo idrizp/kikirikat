@@ -92,9 +92,9 @@ export default function SignUp() {
         </form>
 
         <p className="mt-10 text-center text-sm text-gray-500">
-          Not registered?
-          <a href="/signup" className="font-semibold leading-6 text-kikirik-primary hover:text-slate-700 mx-1">
-            Sign up
+          Already registered?
+          <a href="/login" className="font-semibold leading-6 text-kikirik-primary hover:text-slate-700 mx-1">
+            Log in
           </a>
         </p>
       </div>
