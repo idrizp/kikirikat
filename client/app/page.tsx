@@ -1,7 +1,10 @@
 export default function Home() {
   return (
-    <main className="min-h-screen min-w-full bg-white">
+    <main>
       <title>Kikirikat</title>
+      <div>
+        Kikirikat
+      </div>
     </main>
   );
 }
