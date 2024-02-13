@@ -1,6 +1,6 @@
 export default function Navbar() { 
     return (
-        <div>
+        <div className="flex align-center space-around">
             Navbar
         </div>
     )

@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kikirikat",
-  description: "Web Aplplication for Google Solution Challenge.",
+  description: "Web Application for Google Solution Challenge.",
 };
 
 export default function RootLayout({
