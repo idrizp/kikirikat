@@ -42,7 +42,7 @@ export default function Login() {
               htmlFor="email"
               className="block text-md font-medium leading-6 text-gray-900"
             >
-              Email
+              Username:
             </label>
             <div className="mt-2">
               <input

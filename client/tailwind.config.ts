@@ -17,7 +17,8 @@ const config: Config = {
         "kikirik-primary": "#CDA747",
         "kikirik-secondary": "#EDD28C",
         "kikirik-accent": "#F5C242",
-        "kikirik-background": "#E0CC8C"
+        "kikirik-background": "#E0CC8C",
+        "sidebar-background": "#333333"
 
       }
     },
