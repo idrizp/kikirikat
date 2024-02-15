@@ -20,7 +20,7 @@ export default function SignUp() {
         setEmail('');
         setPassword('');
         setError(undefined);
-        router.push('/homepage');
+        router.push('/');
 
       } catch(error) {
         console.error(error);
@@ -95,7 +95,7 @@ export default function SignUp() {
           <div>
             <button 
               type="submit" 
-              onClick={handleSignUp}
+              onSubmit={handleSignUp}
               className="flex w-full justify-center rounded-md bg-black p-1.5 
               text-md font-semibold leading-6 text-white shadow-sm hover:bg-gray-900"
               >

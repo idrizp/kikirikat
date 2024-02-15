@@ -19,7 +19,7 @@ export default function Login() {
         await signInWithEmailAndPassword(email, password);
         setEmail('');
         setPassword('');
-        router.push('/homepage');
+        router.push('/');
         setError(undefined);
       } catch (error) {
         console.error(error);
@@ -93,7 +93,7 @@ export default function Login() {
           <div>
             <button 
               type="submit" 
-              onClick={handleLogin}
+              onSubmit={handleLogin}
               className="flex w-full justify-center rounded-md bg-black p-1.5 
               text-md font-semibold leading-6 text-white shadow-sm hover:bg-gray-900"
               >
