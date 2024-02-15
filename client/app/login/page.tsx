@@ -16,10 +16,10 @@ export default function Login() {
     e.preventDefault();
     (async () =>{
       try {
-        const res = await signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
         setEmail('');
         setPassword('');
-        router.push('/');
+        router.push('/homepage');
         setError(undefined);
       } catch (error) {
         console.error(error);

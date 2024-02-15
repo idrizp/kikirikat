@@ -2,24 +2,26 @@
 import { MouseEvent, useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   
   const [email, setEmail] =  useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | undefined>(undefined);
-  
+  const router = useRouter();
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
   function handleSignUp(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
       (async () => {
       try {
-        const res = await createUserWithEmailAndPassword(email, password);
-        console.log({res});
+        await createUserWithEmailAndPassword(email, password);
         setEmail('');
         setPassword('');
         setError(undefined);
+        router.push('/homepage');
+
       } catch(error) {
         console.error(error);
         setError(error as string);
