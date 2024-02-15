@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { headers } from "next/headers";
 import Navbar from "@/components/navbar/NavBar";
 import "./globals.css";
 
@@ -19,9 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className + " min-h-screen min-w-screen"}>
         <Navbar />
-        <div className="flex-1">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

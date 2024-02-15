@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main>
       <title>Kikirikat</title>
-      <button onClick={() => signOut(auth)}>
+      <button onClick={() => {signOut(auth)}}>
         Log Out
       </button>
       <div>
