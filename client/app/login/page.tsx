@@ -1,31 +1,29 @@
 'use client';
 import { MouseEvent, useState } from "react";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] =  useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | undefined>(undefined);
   const router = useRouter();
-
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
   function handleLogin(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    (async () =>{
-      try {
-        await signInWithEmailAndPassword(email, password);
-        setEmail('');
-        setPassword('');
-        router.push('/');
-        setError(undefined);
-      } catch (error) {
-        console.error(error);
-        setError(error as string);
-      }
-    })();
+    signInWithEmailAndPassword(auth, email as string, password as string)
+    .then(() => {
+      setEmail('');
+      setPassword('');
+      router.push('/');
+      console.log("User logged in successfully!");
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error("Error Code:", errorCode);
+      console.error("Error Message:", errorMessage);
+    });
+
   }
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">

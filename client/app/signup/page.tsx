@@ -1,33 +1,27 @@
 'use client'
 import { MouseEvent, useState } from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import { useRouter } from "next/navigation";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUp() {
   
-  const [email, setEmail] =  useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [email, setEmail] =  useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
-  
-  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
   function handleSignUp(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-      (async () => {
-      try {
-        await createUserWithEmailAndPassword(email, password);
-        setEmail('');
-        setPassword('');
-        setError(undefined);
-        router.push('/');
-
-      } catch(error) {
-        console.error(error);
-        setError(error as string);
-      }
-    })();
+    createUserWithEmailAndPassword(auth, email as string, password as string)
+    .then(() => {
+      setEmail("");
+      setPassword("");
+      router.push("/");
+      console.log("User created successfully!");
+    }).catch((error) => {
+      const errorCode = error.code;
+      console.error("Error:", errorCode);
+    })
   };
   
   return (
@@ -54,7 +48,7 @@ export default function SignUp() {
                 type="email"
                 placeholder="Enter your email"
                 autoComplete="email"
-                value={email}
+                value={email as string}
                 onChange={(e) => setEmail(e.target.value)}
                 required className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm 
                 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 
@@ -84,7 +78,7 @@ export default function SignUp() {
                 type="password"
                 placeholder="********"
                 autoComplete="current-password"
-                value={password}
+                value={password as string}
                 onChange={(e) => setPassword(e.target.value)}
                 required className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm 
                 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 
