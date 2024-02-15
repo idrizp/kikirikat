@@ -1,16 +1,31 @@
 'use client';
-import { useState } from "react";
-import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from 'next/navigation';
+import { signOut } from "firebase/auth";
+import { auth } from "@/app/firebase/config";
 import Image from "next/image";
 
 export default function Navbar() {
   const [showTaskbar, setShowTaskbar] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const user = auth.currentUser;
+
+  function handleSignOut() {
+    return signOut(auth).then(() => {
+      console.log("Sign out successful!");
+      router.push("/");
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error("Error Code:", errorCode);
+      console.error("Error Message:", errorMessage);
+    });
+}
 
   return (
     <>
-      {(pathname !== "/homepage") && (
+      {(pathname !== "/") && (
         <div className={"fixed h-full xl:w-auto bg-black " + (showTaskbar ? " w-full" : "")}>
           {!showTaskbar && (
             <div className="h-full w-max p-3">
@@ -61,7 +76,13 @@ export default function Navbar() {
               <ul className="flex flex-col p-1">
                 <li className="p-1" >TA DU MAJMUNIN, TA DU MAJMUNIN</li>
                 <li className="p-1" >TA DU MAJMUNIN, TA DU MAJMUNIN</li>
-                <li className="p-1" >TA DU MAJMUNIN, TA DU MAJMUNIN</li>
+                <li className="p-1">{
+                  user &&
+                  <button className="bg-slate-800 hover:bg-slate-700" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                }
+                </li>
               </ul>
             </div>
           )}

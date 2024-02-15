@@ -5,18 +5,20 @@ import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUp() {
-  
   const [email, setEmail] =  useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const user = auth.currentUser;
+
+  
 
   function handleSignUp(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email as string, password as string)
+    return createUserWithEmailAndPassword(auth, email as string, password as string)
     .then(() => {
       setEmail("");
       setPassword("");
-      router.push("/");
+      router.push("/dashboard");
       console.log("User created successfully!");
     }).catch((error) => {
       const errorCode = error.code;

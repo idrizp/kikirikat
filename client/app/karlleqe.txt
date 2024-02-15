@@ -1,3 +1,9 @@
+- Fix the issue that when you sign out and want to log in the 
+  navbar opens for some reason.
+- Fix the issue that user signs out without clicking the sign out button.
+- Fix the issue that Dashboard page is not protected 
+- Fix the issue that when I try to log in after changing pages i get weird errors
+
 <div className="flex flex-col gap-3">
             <div className="flex justify-center items-center gap-1">
               <div>

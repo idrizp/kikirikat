@@ -11,11 +11,11 @@ export default function Login() {
 
   function handleLogin(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email as string, password as string)
+    return signInWithEmailAndPassword(auth, email as string, password as string)
     .then(() => {
       setEmail('');
       setPassword('');
-      router.push('/');
+      router.push('/dashboard');
       console.log("User logged in successfully!");
     }).catch((error) => {
       const errorCode = error.code;
