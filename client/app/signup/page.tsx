@@ -10,6 +10,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | undefined>(undefined);
   const router = useRouter();
+  
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
   function handleSignUp(e: MouseEvent<HTMLButtonElement>) {
@@ -95,7 +96,7 @@ export default function SignUp() {
           <div>
             <button 
               type="submit" 
-              onSubmit={handleSignUp}
+              onClick={handleSignUp}
               className="flex w-full justify-center rounded-md bg-black p-1.5 
               text-md font-semibold leading-6 text-white shadow-sm hover:bg-gray-900"
               >

@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 export default function Login() {
   const [email, setEmail] =  useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter();
   const [error, setError] = useState<string | undefined>(undefined);
+  const router = useRouter();
 
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
@@ -93,7 +93,7 @@ export default function Login() {
           <div>
             <button 
               type="submit" 
-              onSubmit={handleLogin}
+              onClick={handleLogin}
               className="flex w-full justify-center rounded-md bg-black p-1.5 
               text-md font-semibold leading-6 text-white shadow-sm hover:bg-gray-900"
               >
