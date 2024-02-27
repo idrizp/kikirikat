@@ -1,11 +1,11 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname, useRouter } from 'next/navigation';
 import { signOut } from "firebase/auth";
 import { auth } from "@/app/firebase/config";
 import Image from "next/image";
 
-export default function Navbar() {
+export default function NavBar() {
   const [showTaskbar, setShowTaskbar] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
