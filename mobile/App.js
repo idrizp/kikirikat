@@ -1,81 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+import Home from './screens/Home';
+import LogIn from './screens/LogIn';
+import SignUp from './screens/SignUp';
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Image 
-          source={require("./assets/kikirikat_logo.jpg")}
-          style={styles.image} 
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name='Home'
+          component={Home}
+          options={{ headerShown: false }}
         />
-        <Text style={text.logo}>
-          Kikirikat
-        </Text>
-      </View>
-      <Text style={text.headline}>
-        Want to build a robot?
-      </Text>
-      <Text style={text.headline}>
-        Get Started!
-      </Text>
-      <View style={styles.buttonsContainer}>
-        <Button
-          title="Log In"
-          color="#ffbf1d"
-          onPress={() => alert("Log In pressed")}
+
+        <Stack.Screen
+          name='LogIn'
+          component={LogIn}
+          options={{ headerShown: false }}
         />
-        <Button
-          title="Sign Up"
-          color="#ffbf1d"
-          onPress={() => alert("Sign Up pressed")}
+
+        <Stack.Screen
+          name='SignUp'
+          component={SignUp}
+          options={{ headerShown: false }}
         />
-      </View>
-      <StatusBar style="auto" />
-    </View>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    height: "100%",
-  },
-  headerContainer: {  
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-  },
-  buttonsContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    gap: 30,
-  },
-  image: {
-    width: 100,
-    height: 100,
-    borderRadius: 70,
-  }
-});
-
-const text = StyleSheet.create({
-  logo: {
-    color: "#ffbf1d",
-    fontSize: 40,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
-    fontStyle: "italic",
-  },
-  headline: {
-    color: 'black',
-    fontSize: 40,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
-  }
-});
+export default App;
