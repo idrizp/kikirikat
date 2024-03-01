@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
-import ButtonWithText from '../components/ButtonWithText';
+import { StyleSheet, View, TextInput, Image } from 'react-native';
+import CustomizableButton from '../components/CustomizableButton';
+import TextWithFont from '../components/TextWithFont';
 
 export default function SignUp({ navigation }) {
 	const [fullName, setFullName] = useState();
@@ -10,16 +11,12 @@ export default function SignUp({ navigation }) {
 
 	return (
 		<View style={container.main}>
-			<Text style={object.header}>
-				Sign Up
-			</Text>
+			<TextWithFont style={object.header}>Sign Up</TextWithFont>
 
 			<View style={container.body}>
 				<View style={container.fields}>
 					<View style={container.field}>
-						<Text style={object.fieldName}>
-							Full Name:
-						</Text>
+						<TextWithFont style={object.fieldName}>Full Name:</TextWithFont>
 						<TextInput
 							style={object.input}
 							placeholder='John Doe'
@@ -28,9 +25,7 @@ export default function SignUp({ navigation }) {
 					</View>
 
 					<View style={container.field}>
-						<Text style={object.fieldName}>
-							Username:
-						</Text>
+						<TextWithFont style={object.fieldName}>Username:</TextWithFont>
 						<TextInput
 							style={object.input}
 							placeholder='johndoe'
@@ -39,9 +34,7 @@ export default function SignUp({ navigation }) {
 					</View>
 
 					<View style={container.field}>
-						<Text style={object.fieldName}>
-							E-Mail:
-						</Text>
+						<TextWithFont style={object.fieldName}>E-Mail:</TextWithFont>
 						<TextInput
 							style={object.input}
 							placeholder='johndoe@email.com'
@@ -50,9 +43,7 @@ export default function SignUp({ navigation }) {
 					</View>
 
 					<View style={container.field}>
-						<Text style={object.fieldName}>
-							Password:
-						</Text>
+						<TextWithFont style={object.fieldName}>Password:</TextWithFont>
 						<TextInput
 							style={object.input}
 							placeholder='********'
@@ -61,9 +52,7 @@ export default function SignUp({ navigation }) {
 					</View>
 
 					<View style={container.field}>
-						<Text style={object.fieldName}>
-							Phone Number:
-						</Text>
+						<TextWithFont style={object.fieldName}>Phone Number:</TextWithFont>
 						<View style={object.input}>
 							<TextInput
 								placeholder=''
@@ -73,15 +62,12 @@ export default function SignUp({ navigation }) {
 					</View>
 				</View>
 
-				<View style={object.signUpButton}>
-					<ButtonWithText
-						buttonColor='black'
-						text='Sign In'
-						textColor='white'
-						textFontSize={15}
-						action={() => navigation.navigate('Dashboard')}
-					/>
-				</View>
+				<CustomizableButton
+					style={object.signUpButton}
+					onPress={() => navigation.navigate('Dashboard')}
+				>
+					<TextWithFont style={object.signUpButtonText}>Sign Up</TextWithFont>
+				</CustomizableButton>
 
 				<View style={container.otherOptions}>
 					<View style={container.divider}>
@@ -89,9 +75,7 @@ export default function SignUp({ navigation }) {
 							source={require('../assets/or_with_line.png')}
 							style={object.dividerLine}
 						/>
-						<Text style={object.dividerText}>
-							or with
-						</Text>
+						<TextWithFont style={object.dividerText}>or with</TextWithFont>
 						<Image
 							source={require('../assets/or_with_line.png')}
 							style={object.dividerLine}
@@ -99,26 +83,26 @@ export default function SignUp({ navigation }) {
 					</View>
 
 					<View style={container.logos}>
-						<TouchableOpacity>
+						<CustomizableButton onPress={() => navigation.navigate('Dashboard')}>
 							<Image
 								source={require("../assets/apple_logo.jpg")}
 								style={object.logo}
 							/>
-						</TouchableOpacity>
+						</CustomizableButton>
 
-						<TouchableOpacity>
+						<CustomizableButton onPress={() => navigation.navigate('Dashboard')}>
 							<Image
 								source={require("../assets/google_logo.png")}
 								style={object.logo}
 							/>
-						</TouchableOpacity>
+						</CustomizableButton>
 
-						<TouchableOpacity>
+						<CustomizableButton onPress={() => navigation.navigate('Dashboard')}>
 							<Image
 								source={require("../assets/github_logo.png")}
 								style={object.logo}
 							/>
-						</TouchableOpacity>
+						</CustomizableButton>
 					</View>
 				</View>
 			</View>
@@ -130,8 +114,6 @@ const container = StyleSheet.create({
 	main: {
 		display: 'flex',
 		alignItems: 'center',
-		height: '100%',
-		backgroundColor: 'white',
 		paddingTop: '15%', // add padding to the top
 		padding: '9%', // add padding to the sides
 		gap: 30,
@@ -191,6 +173,12 @@ const object = StyleSheet.create({
 		height: 50,
 	},
 	signUpButton: {
-		height: '8%'
+		backgroundColor: 'black',
+		borderRadius: 10,
+		padding: 10
+	},
+	signUpButtonText: {
+		color: 'white',
+		fontSize: 15
 	}
 });

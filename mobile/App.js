@@ -11,10 +11,14 @@ import Profile from './screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          contentStyle: { backgroundColor: 'white' }, // This sets the background color for all screens
+        }}
+      >
         <Stack.Screen
           name='Home'
           component={Home}
@@ -54,5 +58,3 @@ function App() {
     </NavigationContainer>
   );
 }
-
-export default App;

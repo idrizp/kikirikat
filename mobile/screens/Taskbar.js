@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
-import ButtonWithText from "../components/ButtonWithText";
+import CustomizableButton from "../components/CustomizableButton";
+import TextWithFont from "../components/TextWithFont";
 
 export default function Taskbar({ navigation }) {
 	return (
@@ -11,63 +12,49 @@ export default function Taskbar({ navigation }) {
 					style={object.icon}
 				/>
 
-				<TouchableOpacity onPress={() => navigation.goBack()}>
+				<CustomizableButton onPress={() => navigation.goBack()}>
 					<Image
 						source={require('../assets/close_taskbar_icon.png')}
 						style={object.icon}
 					/>
-				</TouchableOpacity>
+				</CustomizableButton>
 			</View>
 
 			<View style={container.options}>
-				<View style={container.option}>
-					<ButtonWithText
-						buttonColor='#FFDF36'
-						text='Dashboard'
-						textColor='black'
-						textFontSize={25}
-						action={() => navigation.navigate('Dashboard')}
-					/>
-				</View>
+				<CustomizableButton
+					style={object.option}
+					onPress={() => navigation.navigate('Dashboard')}
+				>
+					<TextWithFont style={object.optionText}>Dashboard</TextWithFont>
+				</CustomizableButton>
 
-				<View style={container.option}>
-					<ButtonWithText
-						buttonColor='#FFDF36'
-						text='Profile'
-						textColor='black'
-						textFontSize={25}
-						action={() => navigation.navigate('Profile')}
-					/>
-				</View>
+				<CustomizableButton
+					style={object.option}
+					onPress={() => navigation.navigate('Profile')}
+				>
+					<TextWithFont style={object.optionText}>Profile</TextWithFont>
+				</CustomizableButton>
 
-				<View style={container.option}>
-					<ButtonWithText
-						buttonColor='#FFDF36'
-						text='Change Language'
-						textColor='black'
-						textFontSize={25}
+				<CustomizableButton
+					style={object.option}
+					onPress={() => navigation.navigate('ChangeLanguage')}
+				>
+					<TextWithFont style={object.optionText}>Change Language</TextWithFont>
+				</CustomizableButton>
 
-					/>
-				</View>
+				<CustomizableButton
+					style={object.option}
+					onPress={() => navigation.navigate('Settings')}
+				>
+					<TextWithFont style={object.optionText}>Settings</TextWithFont>
+				</CustomizableButton>
 
-				<View style={container.option}>
-					<ButtonWithText
-						buttonColor='#FFDF36'
-						text='Settings'
-						textColor='black'
-						textFontSize={25}
-
-					/>
-				</View>
-
-				<View style={container.option}>
-					<ButtonWithText
-						buttonColor='#FFDF36'
-						text='Log Out'
-						textColor='black'
-						textFontSize={25}
-					/>
-				</View>
+				<CustomizableButton
+					style={object.option}
+					onPress={() => navigation.navigate('Home')}
+				>
+					<TextWithFont style={object.optionText}>Log Out</TextWithFont>
+				</CustomizableButton>
 			</View>
 		</View>
 	)
@@ -92,10 +79,6 @@ const container = StyleSheet.create({
 		alignItems: 'center',
 		gap: 20
 	},
-	option: {
-		height: '7%',
-		width: '80%'
-	}
 });
 
 const object = StyleSheet.create({
@@ -103,5 +86,15 @@ const object = StyleSheet.create({
 		height: 50,
 		width: 50,
 		borderRadius: 70
+	},
+	option: {
+		backgroundColor: '#FFDF36',
+		height: '7%',
+		width: '80%',
+		borderRadius: 10
+	},
+	optionText: {
+		color: 'black',
+		fontSize: 25
 	}
 });

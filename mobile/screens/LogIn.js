@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
-import ButtonWithText from '../components/ButtonWithText';
+import { StyleSheet, View, TextInput, Image } from 'react-native';
+import CustomizableButton from '../components/CustomizableButton';
+import TextWithFont from '../components/TextWithFont';
 
 export default function LogIn({ navigation }) {
 	const [usernameEmail, setUsernameEmail] = useState();
@@ -8,86 +9,73 @@ export default function LogIn({ navigation }) {
 
 	return (
 		<View style={container.main}>
-			<Text style={objects.header}>
-				Log In
-			</Text>
+			<TextWithFont style={object.header}>Log In</TextWithFont>
 
 			<View style={container.body}>
 				<View style={container.fields}>
 					<View style={container.field}>
-						<Text style={objects.fieldName}>
-							Username/E-Mail:
-						</Text>
+						<TextWithFont style={object.fieldName}>Username/E-Mail:</TextWithFont>
 						<TextInput
-							style={objects.input}
+							style={object.input}
 							placeholder='johndoe@email.com'
 							onChangeText={input => setUsernameEmail(input)}
 						/>
 					</View>
 
 					<View style={container.field}>
-						<Text style={objects.fieldName}>
-							Password:
-						</Text>
+						<TextWithFont style={object.fieldName}>Password:</TextWithFont>
 						<TextInput
-							style={objects.input}
+							style={object.input}
 							placeholder='********'
 							onChangeText={input => setPassword(input)}
 						/>
-						<TouchableOpacity>
-							<Text style={objects.forgotPassword}>
-								Forgot Password?
-							</Text>
-						</TouchableOpacity>
+						<CustomizableButton style={object.forgotPasswordButton}>
+							<TextWithFont style={object.forgotPasswordText}>Forgot Password?</TextWithFont>
+						</CustomizableButton>
 					</View>
 				</View>
 
-				<View style={objects.logInButton}>
-					<ButtonWithText
-						buttonColor='black'
-						text='Log In'
-						textColor='white'
-						textFontSize={15}
-						action={() => navigation.navigate('Dashboard')}
-					/>
-				</View>
+				<CustomizableButton
+					style={object.logInButton}
+					onPress={() => navigation.navigate('Dashboard')}
+				>
+					<TextWithFont style={object.logInButtonText}>Log In</TextWithFont>
+				</CustomizableButton>
 
 				<View style={container.otherOptions}>
 					<View style={container.divider}>
 						<Image
 							source={require('../assets/or_with_line.png')}
-							style={objects.dividerLine}
+							style={object.dividerLine}
 						/>
-						<Text style={objects.dividerText}>
-							or with
-						</Text>
+						<TextWithFont style={object.dividerText}>or with</TextWithFont>
 						<Image
 							source={require('../assets/or_with_line.png')}
-							style={objects.dividerLine}
+							style={object.dividerLine}
 						/>
 					</View>
 
 					<View style={container.logos}>
-						<TouchableOpacity>
+						<CustomizableButton onPress={() => navigation.navigate('Dashboard')}>
 							<Image
 								source={require("../assets/apple_logo.jpg")}
-								style={objects.logo}
+								style={object.logo}
 							/>
-						</TouchableOpacity>
+						</CustomizableButton>
 
-						<TouchableOpacity>
+						<CustomizableButton onPress={() => navigation.navigate('Dashboard')}>
 							<Image
 								source={require("../assets/google_logo.png")}
-								style={objects.logo}
+								style={object.logo}
 							/>
-						</TouchableOpacity>
+						</CustomizableButton>
 
-						<TouchableOpacity>
+						<CustomizableButton onPress={() => navigation.navigate('Dashboard')}>
 							<Image
 								source={require("../assets/github_logo.png")}
-								style={objects.logo}
+								style={object.logo}
 							/>
-						</TouchableOpacity>
+						</CustomizableButton>
 					</View>
 				</View>
 			</View>
@@ -99,8 +87,6 @@ const container = StyleSheet.create({
 	main: {
 		display: 'flex',
 		alignItems: 'center',
-		height: '100%',
-		backgroundColor: 'white',
 		paddingTop: '30%', // add padding to the top
 		padding: '9%', // add padding to the sides
 		gap: 80,
@@ -137,7 +123,7 @@ const container = StyleSheet.create({
 	}
 });
 
-const objects = StyleSheet.create({
+const object = StyleSheet.create({
 	header: {
 		color: 'black',
 		fontSize: 40,
@@ -145,7 +131,10 @@ const objects = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
-	forgotPassword: {
+	forgotPasswordButton: {
+		alignSelf: 'flex-start'
+	},
+	forgotPasswordText: {
 		color: "#ffbf1d",
 	},
 	input: {
@@ -161,6 +150,12 @@ const objects = StyleSheet.create({
 		height: 50,
 	},
 	logInButton: {
-		height: '8%'
+		backgroundColor: 'black',
+		borderRadius: 10,
+		padding: 10
+	},
+	logInButtonText: {
+		color: 'white',
+		fontSize: 15
 	}
 });

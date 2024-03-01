@@ -1,106 +1,88 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
-import ButtonWithText from '../components/ButtonWithText';
+import { StyleSheet, View, Image } from 'react-native';
+import CustomizableButton from '../components/CustomizableButton';
+import TextWithFont from '../components/TextWithFont';
 
 export default function Home({ navigation }) {
   return (
-    <View style={styles.container}>
+    <View style={container.main}>
 
-      <View style={styles.headerContainer}>
+      <View style={container.header}>
         <Image
           source={require("../assets/kikirikat_logo.jpg")}
-          style={styles.image}
+          style={object.image}
         />
 
-        <Text style={text.logo}>
-          Kikirikat
-        </Text>
+        <TextWithFont style={object.appName}>Kikirikat</TextWithFont>
       </View>
 
-      <View style={styles.bodyContainer}>
-        <Text style={text.headline}>
-          Want to build a robot?
-        </Text>
+      <View style={container.body}>
+        <TextWithFont style={object.headline}>Want to build a robot?</TextWithFont>
 
-        <View style={styles.actionsContainer}>
-          <Text style={text.headline}>
-            Get Started!
-          </Text>
-          <View style={styles.buttonsContainer}>
+        <View style={container.actions}>
+          <TextWithFont style={object.headline}>Get Started!</TextWithFont>
+          <View style={container.buttons}>
 
-            <View style={styles.actionButton}>
-              <ButtonWithText
-                buttonColor='black'
-                text='Sign Up'
-                textColor='white'
-                textFontSize={15}
-                action={() => navigation.navigate('SignUp')}
-              />
-            </View>
+              <CustomizableButton
+                style={object.button}
+                onPress={() => navigation.navigate('SignUp')}
+              >
+                <TextWithFont style={object.buttonText}>Sign Up</TextWithFont>
+              </CustomizableButton>
 
-            <View style={styles.actionButton}>
-              <ButtonWithText
-                buttonColor='black'
-                text='Log In'
-                textColor='white'
-                textFontSize={15}
-                action={() => navigation.navigate('LogIn')}
-              />
-            </View>
+              <CustomizableButton
+                style={object.button}
+                onPress={() => navigation.navigate('LogIn')}
+              >
+                <TextWithFont style={object.buttonText}>Log In</TextWithFont>
+              </CustomizableButton>
           </View>
         </View>
       </View>
       <StatusBar style="auto" />
-
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
+const container = StyleSheet.create({
+  main: {
     display: 'flex',
-    backgroundColor: 'white',
     alignItems: 'center',
     paddingTop: '30%', // add padding to the top
     padding: '3%', // add padding to the sides and bottom to make headline two lines
     gap: 80,
-    height: '100%'
   },
-  headerContainer: {
+  header: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-  bodyContainer: {
+  body: {
     display: 'flex',
     flexDirection: 'column',
     gap: 40,
   },
-  actionsContainer: {
+  actions: {
     width: '100%',
     display: 'flex',
     gap: 10,
   },
-  buttonsContainer: {
+  buttons: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
 
   },
+});
+
+const object = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
     borderRadius: 70,
   },
-  actionButton: {
-    width: '45%',
-    height: '40%'
-  }
-});
-
-const text = StyleSheet.create({
-  logo: {
+  appName: {
     color: "#ffbf1d",
     fontSize: 40,
     fontFamily: "Roboto",
@@ -113,5 +95,15 @@ const text = StyleSheet.create({
     fontFamily: "Roboto",
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 15,
+  },
+  button: {
+    backgroundColor: 'black',
+    borderRadius: 10,
+    padding: 10, 
+    width: '45%',
   }
 });

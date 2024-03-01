@@ -1,29 +1,31 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, } from 'react-native';
 import Tracks from '../components/Tracks';
+import CustomizableButton from '../components/CustomizableButton';
+import TextWithFont from '../components/TextWithFont';
 
 export default function Dashboard({ navigation }) {
 	return (
 		<View style={container.main}>
 			<View style={container.header}>
-				<TouchableOpacity onPress={() => navigation.navigate('Taskbar')}>
+				<CustomizableButton onPress={() => navigation.navigate('Taskbar')}>
 					<Image 
 						source={require('../assets/taskbar_icon.png')} 
 						style={object.dashboardIcon}
 					/>
-				</TouchableOpacity>
+				</CustomizableButton>
 
 				<View style={container.profile}>
 					<View style={container.profileInformation}>
-						<Text style={object.fullName}>John Smith</Text>
-						<Text style={object.level} >Level 5</Text>
+						<TextWithFont style={object.fullName}>John Smith</TextWithFont>
+						<TextWithFont style={object.level} >Level 5</TextWithFont>
 					</View>
 
-					<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+					<CustomizableButton onPress={() => navigation.navigate('Profile')}>
 						<Image 
 							source={require('../assets/kikirikat_logo.jpg')} 
 							style={object.profilePicture}
 						/>
-					</TouchableOpacity>
+					</CustomizableButton>
 				</View>
 			</View>
 
@@ -31,12 +33,12 @@ export default function Dashboard({ navigation }) {
 				<View style={container.headline}>
 					<Text style={object.currentTrackText}>Current Tracks:</Text>
 
-					<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+					<CustomizableButton onPress={() => navigation.navigate('Profile')}>
 						<Image 
 							source={require('../assets/add_track_icon.png')} 
 							style={object.addTrackIcon}
 						/>
-					</TouchableOpacity>
+					</CustomizableButton>
 				</View>
 
 				<Tracks/>
@@ -49,10 +51,8 @@ const container = StyleSheet.create({
 	main: {
 		display: 'flex',
 		// justifyContent: 'space-between',
-		backgroundColor: 'white',
 		padding: '9%',
 		paddingTop: '15%',
-		height: '100%',
 		gap: 60,
 	},
 	header: {
