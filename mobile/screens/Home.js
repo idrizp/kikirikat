@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import ButtonWithText from '../components/ButtonWithText';
 
 export default function Home({ navigation }) {
   return (
@@ -28,18 +29,22 @@ export default function Home({ navigation }) {
           <View style={styles.buttonsContainer}>
 
             <View style={styles.actionButton}>
-              <Button
-                title='Sign Up'
-                color='black'
-                onPress={() => navigation.navigate('SignUp')}
+              <ButtonWithText
+                buttonColor='black'
+                text='Sign Up'
+                textColor='white'
+                textFontSize={15}
+                action={() => navigation.navigate('SignUp')}
               />
             </View>
 
             <View style={styles.actionButton}>
-              <Button
-                title='Log In'
-                color='black'
-                onPress={() => navigation.navigate('LogIn')}
+              <ButtonWithText
+                buttonColor='black'
+                text='Log In'
+                textColor='white'
+                textFontSize={15}
+                action={() => navigation.navigate('LogIn')}
               />
             </View>
           </View>
@@ -90,6 +95,7 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     width: '45%',
+    height: '40%'
   }
 });
 

@@ -1,50 +1,54 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
+import ButtonWithText from '../components/ButtonWithText';
 
-export default function LogIn() {
+export default function LogIn({ navigation }) {
 	const [usernameEmail, setUsernameEmail] = useState();
 	const [password, setPassword] = useState();
 
 	return (
 		<View style={container.main}>
-			<Text style={items.header}>
+			<Text style={objects.header}>
 				Log In
 			</Text>
 
 			<View style={container.body}>
 				<View style={container.fields}>
 					<View style={container.field}>
-						<Text style={items.fieldName}>
+						<Text style={objects.fieldName}>
 							Username/E-Mail:
 						</Text>
 						<TextInput
-							style={items.input}
+							style={objects.input}
 							placeholder='johndoe@email.com'
 							onChangeText={input => setUsernameEmail(input)}
 						/>
 					</View>
 
 					<View style={container.field}>
-						<Text style={items.fieldName}>
+						<Text style={objects.fieldName}>
 							Password:
 						</Text>
 						<TextInput
-							style={items.input}
+							style={objects.input}
 							placeholder='********'
 							onChangeText={input => setPassword(input)}
 						/>
 						<TouchableOpacity>
-							<Text style={items.forgotPassword}>
+							<Text style={objects.forgotPassword}>
 								Forgot Password?
 							</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
 
-				<View style={container.logInButton}>
-					<Button
-						title='Log In'
-						color='black'
+				<View style={objects.logInButton}>
+					<ButtonWithText
+						buttonColor='black'
+						text='Log In'
+						textColor='white'
+						textFontSize={15}
+						action={() => navigation.navigate('Dashboard')}
 					/>
 				</View>
 
@@ -52,14 +56,14 @@ export default function LogIn() {
 					<View style={container.divider}>
 						<Image
 							source={require('../assets/or_with_line.png')}
-							style={items.dividerLine}
+							style={objects.dividerLine}
 						/>
-						<Text style={items.dividerText}>
+						<Text style={objects.dividerText}>
 							or with
 						</Text>
 						<Image
 							source={require('../assets/or_with_line.png')}
-							style={items.dividerLine}
+							style={objects.dividerLine}
 						/>
 					</View>
 
@@ -67,21 +71,21 @@ export default function LogIn() {
 						<TouchableOpacity>
 							<Image
 								source={require("../assets/apple_logo.jpg")}
-								style={items.logo}
+								style={objects.logo}
 							/>
 						</TouchableOpacity>
 
 						<TouchableOpacity>
 							<Image
 								source={require("../assets/google_logo.png")}
-								style={items.logo}
+								style={objects.logo}
 							/>
 						</TouchableOpacity>
 
 						<TouchableOpacity>
 							<Image
 								source={require("../assets/github_logo.png")}
-								style={items.logo}
+								style={objects.logo}
 							/>
 						</TouchableOpacity>
 					</View>
@@ -133,7 +137,7 @@ const container = StyleSheet.create({
 	}
 });
 
-const items = StyleSheet.create({
+const objects = StyleSheet.create({
 	header: {
 		color: 'black',
 		fontSize: 40,
@@ -157,6 +161,6 @@ const items = StyleSheet.create({
 		height: 50,
 	},
 	logInButton: {
-		borderRadius: 10,
+		height: '8%'
 	}
 });
